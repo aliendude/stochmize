@@ -4,11 +4,11 @@ grammar Stochmize;
  * Parser Rules
  */
  
-program					: (MODEL VARIABLE_NAME '{' model '}')+ EOF ;
+program					: (MODEL ID '{' model '}')+ EOF ;
  
 model 					: VARS '{' vars '}' SUBJTO '{' subjto '}' OBJECTIVES '{' objectives '}';
 
-vars 					: (VARIABLE_NAME (fixed | random) ';')+ ; 
+vars 					: (ID (fixed | random) ';')+ ; 
 
 fixed					: '=' NUMBER;
 
@@ -22,10 +22,9 @@ normal_params			: 'm' '=' NUMBER ',' 'v' '=' NUMBER;
 
 unif_params				: 'a' '=' NUMBER ',' 'b' '=' NUMBER;
 
-subjto 					: (VARIABLE_NAME SUBJTO_DEF NUMBER ';')+ ;
+subjto 					: (ID SUBJTO_DEF NUMBER ';')+ ;
 
-objectives				: (VARIABLE_NAME SUBJTO_DEF NUMBER ';')+ ;
-
+objectives				: ((MAX | MIN) ID '=' ((PLUS | MINUS)? (NUMBER OPERATOR)? ID)(OPERATOR (ID | NUMBER))+ ';')+ ;
 
 
 /*
@@ -44,16 +43,32 @@ SUBJTO				: 'subjto';
 
 OBJECTIVES 			: 'objectives';
 
-VARIABLE_NAME		: ('a'..'z' | 'A'..'Z'|'_')('a'..'z' | 'A'..'Z'|'0'..'9'|'_')*;
-
-fragment DIGIT : [0-9];
-
-NUMBER        		: DIGIT+ ([.,] DIGIT+)? ;
-
 NORMAL 				: 'Normal';
 
 UNIF 				: 'Unif';
 
-OPERATOR			: ( '*' | '+' | '-' | '/' | '**')+ ;
+MAX					: 'max';
+
+MIN					: 'min';
+
+PLUS				: '+';
+
+MINUS				: '-';
+
+POW					: '**';
+
+PROD				: '*';
+
+DIV					: '/';
+
+
+ID					: ('a'..'z' | 'A'..'Z'|'_')('a'..'z' | 'A'..'Z'|'0'..'9'|'_')*;
+
+fragment DIGIT 		: [0-9];
+
+NUMBER        		: DIGIT+ ([.,] DIGIT+)? ;
+
+
+OPERATOR			: ( PLUS | MINUS | PROD | DIV | POW) ;
 
 SUBJTO_DEF			: ('=' | '<' | '>' | '<=' | '>=' )+;

@@ -14,9 +14,9 @@ fixed					: '=' NUMBER;
 
 random					: '~' (normal| unif);
 
-normal 					: NORMAL "(" normal_params ")";
+normal 					: NORMAL '(' normal_params ')';
 
-unif 					: UNIF "(" unif_params ")";
+unif 					: UNIF '(' unif_params ')';
 
 normal_params			: 'm' '=' NUMBER ',' 'v' '=' NUMBER;
 

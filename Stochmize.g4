@@ -6,9 +6,9 @@ grammar Stochmize;
  
 program					: (MODEL ID '{' model '}')+ EOF ;
  
-model 					: VARS '{' vars '}' SUBJTO '{' subjto '}' OBJECTIVES '{' objectives '}';
+model 					: VARS_DEF'{' vars_def '}' SUBJTO '{' subjto '}' OBJECTIVES '{' objectives '}';
 
-vars 					: (ID (fixed | random) ';')+ ; 
+vars_def 					: (ID (fixed | random) ';')+ ; 
 
 fixed					: '=' NUMBER;
 
@@ -37,7 +37,7 @@ NEWLINE             : ('\r'? '\n' | '\r')+ -> skip;
 
 MODEL				: 'model';
 
-VARS				: 'vars';
+VARS_DEF			: 'vars';
 
 SUBJTO				: 'subjto';
 

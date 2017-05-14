@@ -2,7 +2,9 @@ model lalal {
 
 	vars {
 		x1 = 123;
+		z1 = 645;
 		y1 ~ Normal(m = 3, v = 1);
+
 	}
 
 	subjto {

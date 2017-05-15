@@ -2,9 +2,10 @@ model lalal {
 
 	vars {
 		x1 = 123;
-		z1 = 645;
-		y1 ~ Normal(m = 3, v = 1);
-
+		y1 = 645;
+		z1 ~ Normal(m = 3, v = 1);
+		z3 ~ Unif(m = 3, v = 1);
+		z2 ~ Normal(m = 5, v = 2);
 	}
 
 	subjto {

@@ -2,7 +2,10 @@ model lalal {
 
 	vars {
 		x1 = 123;
-		y1 ~ Normal(m = 3, v = 1);
+		y1 = 645;
+		z1 ~ Normal(m = 3, v = 1);
+		z3 ~ Unif(m = 3, v = 1);
+		z2 ~ Normal(m = 5, v = 2);
 	}
 
 	subjto {
@@ -13,6 +16,7 @@ model lalal {
 	objectives {
 		max z1 = 3*x + y1**2;
 		min z2 = x - y1;
+		min z3 = (x - y1); 
 	}
 
 }

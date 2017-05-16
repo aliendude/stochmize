@@ -22,13 +22,13 @@ normal_params			: 'm' '=' NUMBER ',' 'v' '=' NUMBER;
 
 unif_params				: 'a' '=' NUMBER ',' 'b' '=' NUMBER;
 
-subjto 					: (ID SUBJTO_DEF NUMBER ';')+ ;
+subjto 					: (expr SUBJTO_DEF NUMBER ';')+ ;
 
 objectives				: ((MAX | MIN) ID '=' expr';')+ ;
 
 expr					: expr_content ( operators expr_content )*;
 
-expr_content			: (ID | NUMBER) | ('(' expr ')') | ('-' expr_content) ;
+expr_content			: (ID | NUMBER) | ('(' expr ')') | (MINUS expr_content) ;
 
 operators				: (PLUS | MINUS | PROD | DIV| POW);
 

@@ -13,6 +13,14 @@ normal_params_v = []
 
 unif_params_a = []
 unif_params_b = []
+
+subIds = []
+subgetDefs = []
+subgetNumbers = []
+
+MaxMinObj = []
+idsObjets = [] 
+
 class StochmizePrintListener(StochmizeListener):
 
 	def enterProgram(self, ctx):
@@ -42,7 +50,44 @@ class StochmizePrintListener(StochmizeListener):
 						unif_params_a.append(childRandom.unif_params().NUMBER(0).getText())
 						unif_params_b.append(childRandom.unif_params().NUMBER(1).getText())
 		print("==========================")
+	def enterSubjto(self, ctx):
+		print("enterSubjto")
+		for ids in ctx.ID():
+			subIds.append(ids.getText())
 
+		for subg in ctx.SUBJTO_DEF():
+			subgetDefs.append(subg.getText())
+
+		for Numbers in ctx.NUMBER():
+			subgetNumbers.append(Numbers.getText())
+		print("==========================")
+
+	def enterObjectives(self, ctx):
+		print("objectives")
+
+		for child in ctx.getChildren():
+			if (child.getText()=="max") or (child.getText()=="min"):
+				MaxMinObj.append(child.getText())
+
+		for idsObj in ctx.ID():
+			idsObjets.append(idsObj.getText())
+		"""
+		for exprObj in ctx.expr():
+			print(exprObj)
+		print("==========================")"""
+
+	def enterExpr(self, ctx):
+		print("enterExpr")
+		print(ctx)
+		"""
+		for child in ctx.getChildren():
+			print(child)"""
+		print("=======================================")
+
+	def enterExpr_content(self, ctx):
+		print("enterExpr_content")
+		print(ctx)
+		print("=======================================")
 
 def main():
 
@@ -69,6 +114,11 @@ def main():
 	print(normal_params_v)
 	print(unif_params_a)
 	print(unif_params_b)
+	print(subIds)
+	print(subgetDefs)
+	print(subgetNumbers)
+	print(MaxMinObj)
+	print(idsObjets)
 	"""
 	printer = StochmizeListener()
 	res=printer.enterProgram(tree)

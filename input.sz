@@ -16,6 +16,7 @@ model lalal {
 	objectives {
 		max z1 = 3*x + y1**2;
 		min z2 = x - y1;
+		min z3 = (x - y1); 
 	}
 
 }

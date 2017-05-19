@@ -3,6 +3,7 @@ from antlr4 import *
 
 # This class defines a complete listener for a parse tree produced by StochmizeParser.
 class StochmizeListener(ParseTreeListener):
+
     # Enter a parse tree produced by StochmizeParser#program.
     def enterProgram(self, ctx):
         pass

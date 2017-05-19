@@ -12,7 +12,7 @@ else:
 def serializedATN():
     with StringIO() as buf:
         buf.write(u"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3")
-        buf.write(u" \u008b\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t")
+        buf.write(u" \u008c\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t")
         buf.write(u"\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r")
         buf.write(u"\4\16\t\16\4\17\t\17\3\2\3\2\3\2\3\2\3\2\3\2\6\2%\n\2")
         buf.write(u"\r\2\16\2&\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3")
@@ -20,42 +20,42 @@ def serializedATN():
         buf.write(u"\n\4\r\4\16\4@\3\5\3\5\3\5\3\6\3\6\3\6\5\6I\n\6\3\7\3")
         buf.write(u"\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3")
         buf.write(u"\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\13\3")
-        buf.write(u"\13\3\13\3\13\6\13i\n\13\r\13\16\13j\3\f\3\f\3\f\3\f")
-        buf.write(u"\3\f\3\f\6\fs\n\f\r\f\16\ft\3\r\3\r\3\r\3\r\7\r{\n\r")
-        buf.write(u"\f\r\16\r~\13\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5")
-        buf.write(u"\16\u0087\n\16\3\17\3\17\3\17\2\2\20\2\4\6\b\n\f\16\20")
-        buf.write(u"\22\24\26\30\32\34\2\5\3\2\27\30\3\2\36\37\3\2\31\35")
-        buf.write(u"\u0085\2$\3\2\2\2\4*\3\2\2\2\6>\3\2\2\2\bB\3\2\2\2\n")
-        buf.write(u"E\3\2\2\2\fJ\3\2\2\2\16O\3\2\2\2\20T\3\2\2\2\22\\\3\2")
-        buf.write(u"\2\2\24h\3\2\2\2\26r\3\2\2\2\30v\3\2\2\2\32\u0086\3\2")
-        buf.write(u"\2\2\34\u0088\3\2\2\2\36\37\7\21\2\2\37 \7\36\2\2 !\7")
-        buf.write(u"\3\2\2!\"\5\4\3\2\"#\7\4\2\2#%\3\2\2\2$\36\3\2\2\2%&")
-        buf.write(u"\3\2\2\2&$\3\2\2\2&\'\3\2\2\2\'(\3\2\2\2()\7\2\2\3)\3")
-        buf.write(u"\3\2\2\2*+\7\22\2\2+,\7\3\2\2,-\5\6\4\2-.\7\4\2\2./\7")
-        buf.write(u"\23\2\2/\60\7\3\2\2\60\61\5\24\13\2\61\62\7\4\2\2\62")
-        buf.write(u"\63\7\24\2\2\63\64\7\3\2\2\64\65\5\26\f\2\65\66\7\4\2")
-        buf.write(u"\2\66\5\3\2\2\2\67:\7\36\2\28;\5\b\5\29;\5\n\6\2:8\3")
-        buf.write(u"\2\2\2:9\3\2\2\2;<\3\2\2\2<=\7\5\2\2=?\3\2\2\2>\67\3")
-        buf.write(u"\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2A\7\3\2\2\2BC\7\6")
-        buf.write(u"\2\2CD\7\37\2\2D\t\3\2\2\2EH\7\7\2\2FI\5\f\7\2GI\5\16")
-        buf.write(u"\b\2HF\3\2\2\2HG\3\2\2\2I\13\3\2\2\2JK\7\25\2\2KL\7\b")
-        buf.write(u"\2\2LM\5\20\t\2MN\7\t\2\2N\r\3\2\2\2OP\7\26\2\2PQ\7\b")
-        buf.write(u"\2\2QR\5\22\n\2RS\7\t\2\2S\17\3\2\2\2TU\7\n\2\2UV\7\6")
-        buf.write(u"\2\2VW\7\37\2\2WX\7\13\2\2XY\7\f\2\2YZ\7\6\2\2Z[\7\37")
-        buf.write(u"\2\2[\21\3\2\2\2\\]\7\r\2\2]^\7\6\2\2^_\7\37\2\2_`\7")
-        buf.write(u"\13\2\2`a\7\16\2\2ab\7\6\2\2bc\7\37\2\2c\23\3\2\2\2d")
-        buf.write(u"e\7\36\2\2ef\7 \2\2fg\7\37\2\2gi\7\5\2\2hd\3\2\2\2ij")
-        buf.write(u"\3\2\2\2jh\3\2\2\2jk\3\2\2\2k\25\3\2\2\2lm\t\2\2\2mn")
-        buf.write(u"\7\36\2\2no\7\6\2\2op\5\30\r\2pq\7\5\2\2qs\3\2\2\2rl")
-        buf.write(u"\3\2\2\2st\3\2\2\2tr\3\2\2\2tu\3\2\2\2u\27\3\2\2\2v|")
-        buf.write(u"\5\32\16\2wx\5\34\17\2xy\5\32\16\2y{\3\2\2\2zw\3\2\2")
-        buf.write(u"\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\31\3\2\2\2~|\3\2\2")
-        buf.write(u"\2\177\u0087\t\3\2\2\u0080\u0081\7\b\2\2\u0081\u0082")
-        buf.write(u"\5\30\r\2\u0082\u0083\7\t\2\2\u0083\u0087\3\2\2\2\u0084")
-        buf.write(u"\u0085\7\32\2\2\u0085\u0087\5\32\16\2\u0086\177\3\2\2")
-        buf.write(u"\2\u0086\u0080\3\2\2\2\u0086\u0084\3\2\2\2\u0087\33\3")
-        buf.write(u"\2\2\2\u0088\u0089\t\4\2\2\u0089\35\3\2\2\2\n&:@Hjt|")
-        buf.write(u"\u0086")
+        buf.write(u"\13\3\13\3\13\3\13\6\13j\n\13\r\13\16\13k\3\f\3\f\3\f")
+        buf.write(u"\3\f\3\f\3\f\6\ft\n\f\r\f\16\fu\3\r\3\r\3\r\3\r\7\r|")
+        buf.write(u"\n\r\f\r\16\r\177\13\r\3\16\3\16\3\16\3\16\3\16\3\16")
+        buf.write(u"\3\16\5\16\u0088\n\16\3\17\3\17\3\17\2\2\20\2\4\6\b\n")
+        buf.write(u"\f\16\20\22\24\26\30\32\34\2\5\3\2\27\30\3\2\36\37\3")
+        buf.write(u"\2\31\35\u0086\2$\3\2\2\2\4*\3\2\2\2\6>\3\2\2\2\bB\3")
+        buf.write(u"\2\2\2\nE\3\2\2\2\fJ\3\2\2\2\16O\3\2\2\2\20T\3\2\2\2")
+        buf.write(u"\22\\\3\2\2\2\24i\3\2\2\2\26s\3\2\2\2\30w\3\2\2\2\32")
+        buf.write(u"\u0087\3\2\2\2\34\u0089\3\2\2\2\36\37\7\21\2\2\37 \7")
+        buf.write(u"\36\2\2 !\7\3\2\2!\"\5\4\3\2\"#\7\4\2\2#%\3\2\2\2$\36")
+        buf.write(u"\3\2\2\2%&\3\2\2\2&$\3\2\2\2&\'\3\2\2\2\'(\3\2\2\2()")
+        buf.write(u"\7\2\2\3)\3\3\2\2\2*+\7\22\2\2+,\7\3\2\2,-\5\6\4\2-.")
+        buf.write(u"\7\4\2\2./\7\23\2\2/\60\7\3\2\2\60\61\5\24\13\2\61\62")
+        buf.write(u"\7\4\2\2\62\63\7\24\2\2\63\64\7\3\2\2\64\65\5\26\f\2")
+        buf.write(u"\65\66\7\4\2\2\66\5\3\2\2\2\67:\7\36\2\28;\5\b\5\29;")
+        buf.write(u"\5\n\6\2:8\3\2\2\2:9\3\2\2\2;<\3\2\2\2<=\7\5\2\2=?\3")
+        buf.write(u"\2\2\2>\67\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2A\7\3")
+        buf.write(u"\2\2\2BC\7\6\2\2CD\7\37\2\2D\t\3\2\2\2EH\7\7\2\2FI\5")
+        buf.write(u"\f\7\2GI\5\16\b\2HF\3\2\2\2HG\3\2\2\2I\13\3\2\2\2JK\7")
+        buf.write(u"\25\2\2KL\7\b\2\2LM\5\20\t\2MN\7\t\2\2N\r\3\2\2\2OP\7")
+        buf.write(u"\26\2\2PQ\7\b\2\2QR\5\22\n\2RS\7\t\2\2S\17\3\2\2\2TU")
+        buf.write(u"\7\n\2\2UV\7\6\2\2VW\7\37\2\2WX\7\13\2\2XY\7\f\2\2YZ")
+        buf.write(u"\7\6\2\2Z[\7\37\2\2[\21\3\2\2\2\\]\7\r\2\2]^\7\6\2\2")
+        buf.write(u"^_\7\37\2\2_`\7\13\2\2`a\7\16\2\2ab\7\6\2\2bc\7\37\2")
+        buf.write(u"\2c\23\3\2\2\2de\5\30\r\2ef\7 \2\2fg\7\37\2\2gh\7\5\2")
+        buf.write(u"\2hj\3\2\2\2id\3\2\2\2jk\3\2\2\2ki\3\2\2\2kl\3\2\2\2")
+        buf.write(u"l\25\3\2\2\2mn\t\2\2\2no\7\36\2\2op\7\6\2\2pq\5\30\r")
+        buf.write(u"\2qr\7\5\2\2rt\3\2\2\2sm\3\2\2\2tu\3\2\2\2us\3\2\2\2")
+        buf.write(u"uv\3\2\2\2v\27\3\2\2\2w}\5\32\16\2xy\5\34\17\2yz\5\32")
+        buf.write(u"\16\2z|\3\2\2\2{x\3\2\2\2|\177\3\2\2\2}{\3\2\2\2}~\3")
+        buf.write(u"\2\2\2~\31\3\2\2\2\177}\3\2\2\2\u0080\u0088\t\3\2\2\u0081")
+        buf.write(u"\u0082\7\b\2\2\u0082\u0083\5\30\r\2\u0083\u0084\7\t\2")
+        buf.write(u"\2\u0084\u0088\3\2\2\2\u0085\u0086\7\32\2\2\u0086\u0088")
+        buf.write(u"\5\32\16\2\u0087\u0080\3\2\2\2\u0087\u0081\3\2\2\2\u0087")
+        buf.write(u"\u0085\3\2\2\2\u0088\33\3\2\2\2\u0089\u008a\t\4\2\2\u008a")
+        buf.write(u"\35\3\2\2\2\n&:@Hku}\u0087")
         return buf.getvalue()
 
 
@@ -693,11 +693,12 @@ class StochmizeParser ( Parser ):
             super(StochmizeParser.SubjtoContext, self).__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self, i=None):
+        def expr(self, i=None):
             if i is None:
-                return self.getTokens(StochmizeParser.ID)
+                return self.getTypedRuleContexts(StochmizeParser.ExprContext)
             else:
-                return self.getToken(StochmizeParser.ID, i)
+                return self.getTypedRuleContext(StochmizeParser.ExprContext,i)
+
 
         def SUBJTO_DEF(self, i=None):
             if i is None:
@@ -732,22 +733,22 @@ class StochmizeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 102 
+            self.state = 103 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 98
-                self.match(StochmizeParser.ID)
+                self.expr()
                 self.state = 99
                 self.match(StochmizeParser.SUBJTO_DEF)
                 self.state = 100
                 self.match(StochmizeParser.NUMBER)
                 self.state = 101
                 self.match(StochmizeParser.T__2)
-                self.state = 104 
+                self.state = 105 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==StochmizeParser.ID):
+                if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << StochmizeParser.T__5) | (1 << StochmizeParser.MINUS) | (1 << StochmizeParser.ID) | (1 << StochmizeParser.NUMBER))) != 0)):
                     break
 
         except RecognitionException as re:
@@ -810,25 +811,25 @@ class StochmizeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 112 
+            self.state = 113 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 106
+                self.state = 107
                 _la = self._input.LA(1)
                 if not(_la==StochmizeParser.MAX or _la==StochmizeParser.MIN):
                     self._errHandler.recoverInline(self)
                 else:
                     self.consume()
-                self.state = 107
-                self.match(StochmizeParser.ID)
                 self.state = 108
-                self.match(StochmizeParser.T__3)
+                self.match(StochmizeParser.ID)
                 self.state = 109
-                self.expr()
+                self.match(StochmizeParser.T__3)
                 self.state = 110
+                self.expr()
+                self.state = 111
                 self.match(StochmizeParser.T__2)
-                self.state = 114 
+                self.state = 115 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==StochmizeParser.MAX or _la==StochmizeParser.MIN):
@@ -883,17 +884,17 @@ class StochmizeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 116
+            self.state = 117
             self.expr_content()
-            self.state = 122
+            self.state = 123
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << StochmizeParser.PLUS) | (1 << StochmizeParser.MINUS) | (1 << StochmizeParser.POW) | (1 << StochmizeParser.PROD) | (1 << StochmizeParser.DIV))) != 0):
-                self.state = 117
-                self.operators()
                 self.state = 118
+                self.operators()
+                self.state = 119
                 self.expr_content()
-                self.state = 124
+                self.state = 125
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -921,6 +922,9 @@ class StochmizeParser ( Parser ):
             return self.getTypedRuleContext(StochmizeParser.ExprContext,0)
 
 
+        def MINUS(self):
+            return self.getToken(StochmizeParser.MINUS, 0)
+
         def expr_content(self):
             return self.getTypedRuleContext(StochmizeParser.Expr_contentContext,0)
 
@@ -945,11 +949,11 @@ class StochmizeParser ( Parser ):
         self.enterRule(localctx, 24, self.RULE_expr_content)
         self._la = 0 # Token type
         try:
-            self.state = 132
+            self.state = 133
             token = self._input.LA(1)
             if token in [StochmizeParser.ID, StochmizeParser.NUMBER]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 125
+                self.state = 126
                 _la = self._input.LA(1)
                 if not(_la==StochmizeParser.ID or _la==StochmizeParser.NUMBER):
                     self._errHandler.recoverInline(self)
@@ -958,18 +962,18 @@ class StochmizeParser ( Parser ):
 
             elif token in [StochmizeParser.T__5]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 126
-                self.match(StochmizeParser.T__5)
                 self.state = 127
-                self.expr()
+                self.match(StochmizeParser.T__5)
                 self.state = 128
+                self.expr()
+                self.state = 129
                 self.match(StochmizeParser.T__6)
 
             elif token in [StochmizeParser.MINUS]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 130
-                self.match(StochmizeParser.MINUS)
                 self.state = 131
+                self.match(StochmizeParser.MINUS)
+                self.state = 132
                 self.expr_content()
 
             else:
@@ -1025,7 +1029,7 @@ class StochmizeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 134
+            self.state = 135
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << StochmizeParser.PLUS) | (1 << StochmizeParser.MINUS) | (1 << StochmizeParser.POW) | (1 << StochmizeParser.PROD) | (1 << StochmizeParser.DIV))) != 0)):
                 self._errHandler.recoverInline(self)

@@ -21,6 +21,26 @@ subgetNumbers = []
 MaxMinObj = []
 idsObjets = [] 
 
+def expreciones(exp):
+	print("EXPRECIONES")
+	
+	print(exp)
+	for oprExp in exp.operators():
+		print(oprExp.getText())
+	
+	for expCont in exp.expr_content():
+		print(expCont)
+		exprecontent(expCont)
+	
+	print("=====================")
+
+def exprecontent(exp):
+	print("######## INI #########")
+	for child in exp.getChildren():
+		print(type(child))
+		print(child) 
+	print("######### FIN ########")
+
 class StochmizePrintListener(StochmizeListener):
 
 	def enterProgram(self, ctx):
@@ -52,8 +72,9 @@ class StochmizePrintListener(StochmizeListener):
 		print("==========================")
 	def enterSubjto(self, ctx):
 		print("enterSubjto")
+		"""
 		for ids in ctx.ID():
-			subIds.append(ids.getText())
+			subIds.append(ids.getText())"""
 
 		for subg in ctx.SUBJTO_DEF():
 			subgetDefs.append(subg.getText())
@@ -63,31 +84,48 @@ class StochmizePrintListener(StochmizeListener):
 		print("==========================")
 
 	def enterObjectives(self, ctx):
-		print("objectives")
-
-		for child in ctx.getChildren():
-			if (child.getText()=="max") or (child.getText()=="min"):
-				MaxMinObj.append(child.getText())
-
 		for idsObj in ctx.ID():
+			print(idsObj.getText())
 			idsObjets.append(idsObj.getText())
+
+		for exprObj in ctx.expr():
+			print(exprObj)
+		"""
+		print(ctx.operators())
+		print("==========================")"""
+		
+		for child in ctx.getChildren():
+			print(type(child))
+			print(child)
+			if isinstance(child , StochmizeParser.ExprContext):
+				expreciones(child)
+			if (child.getText()=="+") or (child.getText()=="min"):
+				#print(child.getText())
+				pass
+				#MaxMinObj.append(child.getText())
+		print("==========================")
+
+
+		"""
+		for idsObj in ctx.ID():
+			idsObjets.append(idsObj.getText())"""
 		"""
 		for exprObj in ctx.expr():
 			print(exprObj)
 		print("==========================")"""
-
+	"""
 	def enterExpr(self, ctx):
 		print("enterExpr")
 		print(ctx)
-		"""
+		
 		for child in ctx.getChildren():
-			print(child)"""
-		print("=======================================")
-
+			print(child)
+		print("=======================================")"""
+	"""
 	def enterExpr_content(self, ctx):
-		print("enterExpr_content")
-		print(ctx)
-		print("=======================================")
+		print("******enterExpr_content***********")
+		print(ctx.ID())
+		print("=======================================")"""
 
 def main():
 

@@ -8,11 +8,15 @@ program					: (MODEL ID '{' model '}')+ EOF ;
  
 model 					: VARS_DEF '{' vars_def '}' SUBJTO '{' subjto '}' OBJECTIVES '{' objectives '}';
 
-vars_def 				: (ID (fixed | random) ';')+ ; 
+vars_def 				: (ID ( fixed_range_random ) ';')+ ;
+
+fixed_range_random		: (fixed | rang | random);
 
 fixed					: '=' NUMBER;
 
-random					: '~' (normal| unif);
+random					: '~' (normal| unif );
+
+rang					: ':' '(' (MINUS)? NUMBER ',' (MINUS)? NUMBER ')';
 
 normal 					: NORMAL '(' normal_params ')';
 
@@ -24,7 +28,9 @@ unif_params				: 'a' '=' NUMBER ',' 'b' '=' NUMBER;
 
 subjto 					: (expr SUBJTO_DEF NUMBER ';')+ ;
 
-objectives				: ((MAX | MIN) ID '=' expr';')+ ;
+objectives				: (min_max ID '=' expr';')+ ;
+
+min_max					: (MAX | MIN);
 
 expr					: expr_content ( operators expr_content )*;
 
@@ -71,6 +77,6 @@ ID					: ('a'..'z' | 'A'..'Z'|'_')('a'..'z' | 'A'..'Z'|'0'..'9'|'_')*;
 
 fragment DIGIT 		: [0-9];
 
-NUMBER        		: DIGIT+ ([.,] DIGIT+)? ;
+NUMBER        		: DIGIT+ ([.] DIGIT+)? ;
 
 SUBJTO_DEF			: ('=' | '<' | '>' | '<=' | '>=' )+;

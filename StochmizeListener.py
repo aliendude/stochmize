@@ -31,6 +31,15 @@ class StochmizeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by StochmizeParser#fixed_range_random.
+    def enterFixed_range_random(self, ctx):
+        pass
+
+    # Exit a parse tree produced by StochmizeParser#fixed_range_random.
+    def exitFixed_range_random(self, ctx):
+        pass
+
+
     # Enter a parse tree produced by StochmizeParser#fixed.
     def enterFixed(self, ctx):
         pass
@@ -46,6 +55,15 @@ class StochmizeListener(ParseTreeListener):
 
     # Exit a parse tree produced by StochmizeParser#random.
     def exitRandom(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by StochmizeParser#rang.
+    def enterRang(self, ctx):
+        pass
+
+    # Exit a parse tree produced by StochmizeParser#rang.
+    def exitRang(self, ctx):
         pass
 
 
@@ -100,6 +118,15 @@ class StochmizeListener(ParseTreeListener):
 
     # Exit a parse tree produced by StochmizeParser#objectives.
     def exitObjectives(self, ctx):
+        pass
+
+
+    # Enter a parse tree produced by StochmizeParser#min_max.
+    def enterMin_max(self, ctx):
+        pass
+
+    # Exit a parse tree produced by StochmizeParser#min_max.
+    def exitMin_max(self, ctx):
         pass
 
 

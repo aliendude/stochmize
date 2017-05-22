@@ -37,22 +37,34 @@ def expreciones(exp):
 	
 	index = 0.0;
 	coefOper = 1.0
+	indexOper = 0
 	oper = [];
 	coefs = [0]*len(varIdsIndex)
 	#print(varIdsIdent)
-
+	"""
+	for operator in exp.operators():
+		print(operator.getText())
+	"""
+	oper.append(1.0)
 	for oprExp in exp.operators():
-		oper.append(oprExp.getText())
+		if oprExp.getText() == '-':
+			oper.append(-1.0)
+		elif oprExp.getText() == '+':
+			oper.append(1.0)
+
 
 	for expCont in exp.expr_content():
+		
 		if expCont.getText() in varIdsIndex:
 			index = varIdsIndex[expCont.getText()]
-			coefs[index]=coefOper
+			coefs[index]=coefOper*oper[indexOper]
+			indexOper = indexOper+1
 			coefOper = 1.0
 		else:
 			coefOper = float(expCont.getText())
-
+		
 	print(coefs)
+	print(oper)
 	print("=====================")
 	return coefs
 
@@ -64,19 +76,37 @@ def fixedVal(frr):
 	return arr
 
 def rangVal(frr):
+	print("=== RANGE ===")
 	arr = []
 	rang = frr.rang()
-	for ran in rang.NUMBER():
+
+	for ran in rang.limit():
 		arr.append(float(ran.getText()))
+	print(arr)
+	print("===  ===")
 	return arr
-"""
+
 def exprecontent(exp):
+	"""
+	factor_signo_numero = []
+	print("#####INI####")
+	if exp.MINUS():
+		factor_signo_numero.append(-1.0)
+	else:
+		factor_signo_numero.append(1.0)
+	print(exp.getText())
+	factor_signo_numero.append(exp.ID())
+	print(factor_signo_numero)
+	print("#####FIN####")
+	"""
+
+	""""
 	print("######## INI #########")
 	for child in exp.getChildren():
 		print(type(child))
-		print(child) 
+		print(child)
 	print("######### FIN ########")
-"""
+	"""
 class StochmizePrintListener(StochmizeListener):
 
 	def enterProgram(self, ctx):
@@ -134,11 +164,6 @@ class StochmizePrintListener(StochmizeListener):
 		for valRest in ctx.NUMBER():
 			valNumRest.append(float(valRest.getText()))
 
-		print(varCoefs)
-		print(subgetDefs)
-		print(valNumRest)
-
-
 	
 	def enterObjectives(self, ctx):
 		
@@ -152,16 +177,6 @@ class StochmizePrintListener(StochmizeListener):
 
 		for exprObj in ctx.expr():
 			obgetsDefs.append(expreciones(exprObj))
-		print(min_maxObject)
-		print(obgetsDefs)
-
-		"""
-		for child in ctx.getChildren():
-			print(type(child))
-			print(child)
-			if isinstance(child , StochmizeParser.ExprContext):
-				expreciones(child)"""
-		print("==========================")
 	
 
 def main():
@@ -174,26 +189,7 @@ def main():
 	printer = StochmizePrintListener()
 	walker = ParseTreeWalker()
 	walker.walk(printer, tree)
-	"""
-	arr=[0,0,0,0,0]
-	print(arr)
-	arr[3]=5
-	print(arr)
-	"""
-	#print(varIds['y'])
-	
-	"""
-	print(varNum)
-	print(normal_params_m)
-	print(normal_params_v)
-	print(unif_params_a)
-	print(unif_params_b)
-	print(subIds)
-	print(subgetDefs)
-	print(subgetNumbers)
-	print(MaxMinObj)
-	print(idsObjets)
-	"""
+
 
 	
 	if min_maxObject[0] == 'min':
@@ -203,6 +199,8 @@ def main():
 
 	varsLp = {}
 	valProb = 0
+
+	
 	#variables
 	index=0
 	for var in varIdsIndex:
@@ -215,7 +213,6 @@ def main():
 			valProb = valProb + varsLp[varIdsIndex[var]]*obgetsDefs[0][varIdsIndex[var]]
 		index=index+1
 
-	#print(valProb)
 
 	#objetive	
 
@@ -233,7 +230,7 @@ def main():
 			index=index+1
 
 		sub = subgetDefs[indexRestVal]
-		print(valrest)
+
 		if sub == '==':
 			prob += valrest == valNumRest[indexRestVal]
 		elif sub == '<=':
@@ -245,15 +242,16 @@ def main():
 		elif sub == '>':
 			prob += valrest > valNumRest[indexRestVal]
 		indexRestVal=indexRestVal+1
-
-	print(prob)
+	
 	GLPK().solve(prob) 
-	os.system('clear')
+	#os.system('clear')
 	print(prob)
 	for v in prob.variables(): 
 		print v.name, "=", v.varValue 
 
 	print "objective=", value(prob.objective) 
+
+	#Ejemplo quemado (mismo modelo del input.sz)
 	"""
 	prob = LpProblem("test1", LpMaximize)
 	# Variables 

@@ -2,18 +2,18 @@ model lalal {
 
 	vars {
 		x : (0,4);
-		y : (1,1);
+		y : (-1,1);
 		z = 0;
 	}
 
 	subjto {
-		x + y <= 5;
+		x - y <= 5;
 		x + z >= 10;
 		y + z == 7;
 	}
 
 	objectives {
-		min Z = 1*x + 4*y + 9*z ;
+		min Z = -1*x + 4*y + 9*z ;
 	}
 
 }

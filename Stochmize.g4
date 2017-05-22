@@ -16,7 +16,9 @@ fixed					: '=' NUMBER;
 
 random					: '~' (normal| unif );
 
-rang					: ':' '(' (MINUS)? NUMBER ',' (MINUS)? NUMBER ')';
+rang					: ':' '(' limit ',' limit ')';
+
+limit					: (MINUS)? NUMBER ;
 
 normal 					: NORMAL '(' normal_params ')';
 

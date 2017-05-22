@@ -67,6 +67,15 @@ class StochmizeListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by StochmizeParser#limit.
+    def enterLimit(self, ctx):
+        pass
+
+    # Exit a parse tree produced by StochmizeParser#limit.
+    def exitLimit(self, ctx):
+        pass
+
+
     # Enter a parse tree produced by StochmizeParser#normal.
     def enterNormal(self, ctx):
         pass

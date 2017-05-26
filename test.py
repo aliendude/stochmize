@@ -31,8 +31,8 @@ subgetNumbers = []
 MaxMinObj = []
 idsObjets = [] 
 
-def expreciones(exp):
-	print("EXPRECIONES")
+def expresiones(exp):
+	print("EXPRESIONES")
 	
 	index = 0.0;
 	coefOper = 1.0
@@ -158,7 +158,7 @@ class StochmizePrintListener(StochmizeListener):
 			subgetDefs.append(subg_def.getText())
 
 		for expr in ctx.expr():
-			varCoefs.append(expreciones(expr))
+			varCoefs.append(expresiones(expr))
 
 		for valRest in ctx.NUMBER():
 			valNumRest.append(float(valRest.getText()))
@@ -175,7 +175,7 @@ class StochmizePrintListener(StochmizeListener):
 			min_maxObject.append(min_max.getText())
 
 		for exprObj in ctx.expr():
-			obgetsDefs.append(expreciones(exprObj))
+			obgetsDefs.append(expresiones(exprObj))
 	
 
 def main():

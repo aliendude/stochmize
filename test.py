@@ -2,8 +2,7 @@ from antlr4 import *
 from StochmizeLexer import StochmizeLexer
 from StochmizeListener import StochmizeListener
 from StochmizeParser import StochmizeParser
-from pulp import * 
-import numpy as np
+from pulp import *
 import antlr4
 import sys
 import os

@@ -1,17 +1,13 @@
-# Generated from java-escape by ANTLR 4.5
+# Generated from Stochmize.g4 by ANTLR 4.7
 # encoding: utf-8
 from __future__ import print_function
 from antlr4 import *
 from io import StringIO
-package = globals().get("__package__", None)
-ischild = len(package)>0 if package is not None else False
-if ischild:
-    from .StochmizeListener import StochmizeListener
-else:
-    from StochmizeListener import StochmizeListener
+import sys
+
 def serializedATN():
     with StringIO() as buf:
-        buf.write(u"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3")
+        buf.write(u"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3")
         buf.write(u"!\u00a4\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t")
         buf.write(u"\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r")
         buf.write(u"\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4")
@@ -28,11 +24,11 @@ def serializedATN():
         buf.write(u"\f\21\16\21\u0097\13\21\3\22\3\22\3\22\3\22\3\22\3\22")
         buf.write(u"\3\22\5\22\u00a0\n\22\3\23\3\23\3\23\2\2\24\2\4\6\b\n")
         buf.write(u"\f\16\20\22\24\26\30\32\34\36 \"$\2\5\3\2\30\31\3\2\37")
-        buf.write(u" \3\2\32\36\u009c\2,\3\2\2\2\4\62\3\2\2\2\6C\3\2\2\2")
-        buf.write(u"\bJ\3\2\2\2\nL\3\2\2\2\fO\3\2\2\2\16T\3\2\2\2\20\\\3")
-        buf.write(u"\2\2\2\22`\3\2\2\2\24e\3\2\2\2\26j\3\2\2\2\30r\3\2\2")
-        buf.write(u"\2\32\177\3\2\2\2\34\u0089\3\2\2\2\36\u008d\3\2\2\2 ")
-        buf.write(u"\u008f\3\2\2\2\"\u009f\3\2\2\2$\u00a1\3\2\2\2&\'\7\22")
+        buf.write(u" \3\2\32\36\2\u009c\2,\3\2\2\2\4\62\3\2\2\2\6C\3\2\2")
+        buf.write(u"\2\bJ\3\2\2\2\nL\3\2\2\2\fO\3\2\2\2\16T\3\2\2\2\20\\")
+        buf.write(u"\3\2\2\2\22`\3\2\2\2\24e\3\2\2\2\26j\3\2\2\2\30r\3\2")
+        buf.write(u"\2\2\32\177\3\2\2\2\34\u0089\3\2\2\2\36\u008d\3\2\2\2")
+        buf.write(u" \u008f\3\2\2\2\"\u009f\3\2\2\2$\u00a1\3\2\2\2&\'\7\22")
         buf.write(u"\2\2\'(\7\37\2\2()\7\3\2\2)*\5\4\3\2*+\7\4\2\2+-\3\2")
         buf.write(u"\2\2,&\3\2\2\2-.\3\2\2\2.,\3\2\2\2./\3\2\2\2/\60\3\2")
         buf.write(u"\2\2\60\61\7\2\2\3\61\3\3\2\2\2\62\63\7\23\2\2\63\64")
@@ -73,7 +69,7 @@ def serializedATN():
 
 class StochmizeParser ( Parser ):
 
-    grammarFileName = "java-escape"
+    grammarFileName = "Stochmize.g4"
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -153,9 +149,9 @@ class StochmizeParser ( Parser ):
     NUMBER=30
     SUBJTO_DEF=31
 
-    def __init__(self, input):
-        super(StochmizeParser, self).__init__(input)
-        self.checkVersion("4.5")
+    def __init__(self, input, output=sys.stdout):
+        super(StochmizeParser, self).__init__(input, output=output)
+        self.checkVersion("4.7")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -193,11 +189,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_program
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterProgram"):
                 listener.enterProgram(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitProgram"):
                 listener.exitProgram(self)
 
 
@@ -271,11 +267,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_model
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterModel"):
                 listener.enterModel(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitModel"):
                 listener.exitModel(self)
 
 
@@ -342,11 +338,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_vars_def
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterVars_def"):
                 listener.enterVars_def(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitVars_def"):
                 listener.exitVars_def(self)
 
 
@@ -406,11 +402,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_fixed_range_random
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterFixed_range_random"):
                 listener.enterFixed_range_random(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitFixed_range_random"):
                 listener.exitFixed_range_random(self)
 
 
@@ -423,19 +419,20 @@ class StochmizeParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 72
+            self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [StochmizeParser.T__3]:
                 self.state = 69
                 self.fixed()
-
+                pass
             elif token in [StochmizeParser.T__5]:
                 self.state = 70
                 self.rang()
-
+                pass
             elif token in [StochmizeParser.T__4]:
                 self.state = 71
                 self.random()
-
+                pass
             else:
                 raise NoViableAltException(self)
 
@@ -460,11 +457,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_fixed
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterFixed"):
                 listener.enterFixed(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitFixed"):
                 listener.exitFixed(self)
 
 
@@ -506,11 +503,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_random
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterRandom"):
                 listener.enterRandom(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitRandom"):
                 listener.exitRandom(self)
 
 
@@ -525,15 +522,16 @@ class StochmizeParser ( Parser ):
             self.state = 77
             self.match(StochmizeParser.T__4)
             self.state = 80
+            self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [StochmizeParser.NORMAL]:
                 self.state = 78
                 self.normal()
-
+                pass
             elif token in [StochmizeParser.UNIF]:
                 self.state = 79
                 self.unif()
-
+                pass
             else:
                 raise NoViableAltException(self)
 
@@ -562,11 +560,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_rang
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterRang"):
                 listener.enterRang(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitRang"):
                 listener.exitRang(self)
 
 
@@ -614,11 +612,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_limit
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterLimit"):
                 listener.enterLimit(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitLimit"):
                 listener.exitLimit(self)
 
 
@@ -632,6 +630,7 @@ class StochmizeParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 90
+            self._errHandler.sync(self)
             _la = self._input.LA(1)
             if _la==StochmizeParser.MINUS:
                 self.state = 89
@@ -665,11 +664,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_normal
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterNormal"):
                 listener.enterNormal(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitNormal"):
                 listener.exitNormal(self)
 
 
@@ -714,11 +713,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_unif
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterUnif"):
                 listener.enterUnif(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitUnif"):
                 listener.exitUnif(self)
 
 
@@ -762,11 +761,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_normal_params
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterNormal_params"):
                 listener.enterNormal_params(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitNormal_params"):
                 listener.exitNormal_params(self)
 
 
@@ -816,11 +815,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_unif_params
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterUnif_params"):
                 listener.enterUnif_params(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitUnif_params"):
                 listener.exitUnif_params(self)
 
 
@@ -883,11 +882,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_subjto
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterSubjto"):
                 listener.enterSubjto(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitSubjto"):
                 listener.exitSubjto(self)
 
 
@@ -956,11 +955,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_objectives
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterObjectives"):
                 listener.enterObjectives(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitObjectives"):
                 listener.exitObjectives(self)
 
 
@@ -1017,11 +1016,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_min_max
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterMin_max"):
                 listener.enterMin_max(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitMin_max"):
                 listener.exitMin_max(self)
 
 
@@ -1039,6 +1038,7 @@ class StochmizeParser ( Parser ):
             if not(_la==StochmizeParser.MAX or _la==StochmizeParser.MIN):
                 self._errHandler.recoverInline(self)
             else:
+                self._errHandler.reportMatch(self)
                 self.consume()
         except RecognitionException as re:
             localctx.exception = re
@@ -1072,11 +1072,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_expr
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterExpr"):
                 listener.enterExpr(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitExpr"):
                 listener.exitExpr(self)
 
 
@@ -1138,11 +1138,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_expr_content
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterExpr_content"):
                 listener.enterExpr_content(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitExpr_content"):
                 listener.exitExpr_content(self)
 
 
@@ -1155,6 +1155,7 @@ class StochmizeParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.state = 157
+            self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [StochmizeParser.ID, StochmizeParser.NUMBER]:
                 self.enterOuterAlt(localctx, 1)
@@ -1163,8 +1164,9 @@ class StochmizeParser ( Parser ):
                 if not(_la==StochmizeParser.ID or _la==StochmizeParser.NUMBER):
                     self._errHandler.recoverInline(self)
                 else:
+                    self._errHandler.reportMatch(self)
                     self.consume()
-
+                pass
             elif token in [StochmizeParser.T__6]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 151
@@ -1173,14 +1175,14 @@ class StochmizeParser ( Parser ):
                 self.expr()
                 self.state = 153
                 self.match(StochmizeParser.T__8)
-
+                pass
             elif token in [StochmizeParser.MINUS]:
                 self.enterOuterAlt(localctx, 3)
                 self.state = 155
                 self.match(StochmizeParser.MINUS)
                 self.state = 156
                 self.expr_content()
-
+                pass
             else:
                 raise NoViableAltException(self)
 
@@ -1217,11 +1219,11 @@ class StochmizeParser ( Parser ):
             return StochmizeParser.RULE_operators
 
         def enterRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "enterOperators"):
                 listener.enterOperators(self)
 
         def exitRule(self, listener):
-            if isinstance( listener, StochmizeListener ):
+            if hasattr(listener, "exitOperators"):
                 listener.exitOperators(self)
 
 
@@ -1239,6 +1241,7 @@ class StochmizeParser ( Parser ):
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << StochmizeParser.PLUS) | (1 << StochmizeParser.MINUS) | (1 << StochmizeParser.POW) | (1 << StochmizeParser.PROD) | (1 << StochmizeParser.DIV))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
+                self._errHandler.reportMatch(self)
                 self.consume()
         except RecognitionException as re:
             localctx.exception = re
@@ -1247,6 +1250,7 @@ class StochmizeParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
 
 

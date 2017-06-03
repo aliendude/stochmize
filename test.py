@@ -14,19 +14,19 @@ varIdsIndex = {}
 #Map de los rangos de las variables
 varRanges = {}
 
-#Array coeficientes de las restrucciones
+#Coeficientes de las restricciones
 varCoefs = []
 
-#Array de los numeros de las restricciones
+#Numero condicional de las restricciones
 valNumRest = []
 
-#Array de los desigualdades de las restricciones
+#Desigualdades de las restricciones
 subgetDefs = []
 
-#Array de los coeficioentes de las funciones objetivos
+#Coeficioentes de las funciones objetivos
 obgetsDefs = []
 
-#Array del tipo de objetivo por cada funcion
+#Tipo de objetivo por cada funcion
 min_maxObject = []
 
 

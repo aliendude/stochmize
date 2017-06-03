@@ -3,10 +3,13 @@ from StochmizeLexer import StochmizeLexer
 from StochmizeListener import StochmizeListener
 from StochmizeParser import StochmizeParser
 from pulp import * 
+from platypus import *
 import numpy as np
 import antlr4
 import sys
 import os
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 #Map de las variables con respecto a un indice
 varIdsIndex = {}
@@ -14,19 +17,19 @@ varIdsIndex = {}
 #Map de los rangos de las variables
 varRanges = {}
 
-#Array coeficientes de las restrucciones
+#Coeficientes de las restricciones
 varCoefs = []
 
-#Array de los numeros de las restricciones
+#Numero condicional de las restricciones
 valNumRest = []
 
-#Array de los desigualdades de las restricciones
+#Desigualdades de las restricciones
 subgetDefs = []
 
-#Array de los coeficioentes de las funciones objetivos
+#Coeficioentes de las funciones objetivos
 obgetsDefs = []
 
-#Array del tipo de objetivo por cada funcion
+#Tipo de objetivo por cada funcion
 min_maxObject = []
 
 
@@ -45,7 +48,6 @@ MaxMinObj = []
 idsObjets = [] 
 
 def expreciones(exp):
-
 	print("EXPRECIONES")
 	
 	index = 0.0;
@@ -203,96 +205,96 @@ def main():
 	walker = ParseTreeWalker()
 	walker.walk(printer, tree)
 
+	model = {'objetives':{'type': min_maxObject, 'coefs':obgetsDefs},
+			'restrictions':{'numCoefs': valNumRest, 'coefs':varCoefs}}
 
-	
-	if min_maxObject[0] == 'min':
-		prob = LpProblem("test1", LpMinimize)
-	else:
-		prob = LpProblem("test1", LpMaximize) 
+	print(model)
 
-	varsLp = {}
-	valProb = 0
 
-	
-	#variables
+	def fun(vars,model):
+		rest= []
+		objt = []
+		
+		for objcf in model['objetives']['coefs']:
+			index = 0
+			valob = 0
+			for coef in objcf:
+				valob = valob + coef*vars[index]
+				index=index+1
+			objt.append(valob)
+
+		idNumRest=0
+		for restcf in model['restrictions']['coefs']:
+			index = 0
+			valrest = 0
+			for coef in restcf:
+				valrest = valrest + coef*vars[index]
+				index=index+1
+			rest.append(valrest-model['restrictions']['numCoefs'][idNumRest])
+			idNumRest=idNumRest+1
+
+		return objt,rest
+	#Problem(num variables,num func objetivo, num restric)
+	problem = Problem(len(varIdsIndex), len(obgetsDefs), len(varCoefs))
+
+	ranges = []
+
 	index=0
 	for var in varIdsIndex:
 		ran = varRanges[varIdsIndex[var]]
 		if len(ran) == 2:
-			varsLp[varIdsIndex[var]]=LpVariable(var, ran[0], ran[1])
-			valProb = valProb + varsLp[varIdsIndex[var]]*obgetsDefs[0][varIdsIndex[var]]
+			ranges.append(Real(ran[0],ran[1]))
 		else:
-			varsLp[varIdsIndex[var]]=LpVariable(var, ran[0])
-			valProb = valProb + varsLp[varIdsIndex[var]]*obgetsDefs[0][varIdsIndex[var]]
+			ranges.append(Real(ran[0],ran[0]))
 		index=index+1
 
 
-	#objetive	
+	problem.types[:] = ranges
 
-	prob += valProb
 
-	#restrictions
-	rest = 0
-	indexRestVal = 0
+	problem.constraints[:] = "<=0"
+	problem.function = fun
+	problem.model = model
 
-	for restef in varCoefs:
-		index = 0
-		valrest = 0
-		for coef in restef:
-			valrest = valrest + coef*varsLp[index]
-			index=index+1
-
-		sub = subgetDefs[indexRestVal]
-
-		if sub == '==':
-			prob += valrest == valNumRest[indexRestVal]
-		elif sub == '<=':
-			prob += valrest <= valNumRest[indexRestVal]
-		elif sub == '>=':
-			prob += valrest >= valNumRest[indexRestVal]
-		elif sub == '<':
-			prob += valrest < valNumRest[indexRestVal]
-		elif sub == '>':
-			prob += valrest > valNumRest[indexRestVal]
-		indexRestVal=indexRestVal+1
-	
-	GLPK().solve(prob) 
-	#os.system('clear')
-	print(prob)
-	for v in prob.variables(): 
-		print v.name, "=", v.varValue 
-
-	print "objective=", value(prob.objective) 
-
-	#Ejemplo quemado (mismo modelo del input.sz)
+	algorithm = NSGAII(problem)
+	algorithm.run(1)
 	"""
-	prob = LpProblem("test1", LpMaximize)
-	# Variables 
-	x = LpVariable("x", 0, 4) 
-	y = LpVariable("y", 1, 1)
-	z = LpVariable("z", 0) 
-
-	# Objective
-	prob += 1*x + 4*y + 9*z 
-
-	# Constraints 
-	prob += x+y <= 5 
-	prob += x+z >= 10 
-	prob += y+z == 7 
-	print("========================")
-	print(prob)
-	print("========================")
+	for solution in algorithm.result:
+	    print(solution.objectives)
+	"""
 	
-	GLPK().solve(prob) 
-	os.system('clear')
-	# Solution 
-	print("========================")
-	print(prob)
-	print("========================")
-	for v in prob.variables(): 
-		print v.name, "=", v.varValue 
+	plt.scatter([s.objectives[0] for s in algorithm.result],
+	            [s.objectives[1] for s in algorithm.result])
+	#plt.xlim([-10.0, 20.0])
+	plt.ylim([-10.0, 20.0])
+	plt.xlabel("$f_1(x)$")
+	plt.ylabel("$f_2(x)$")
 
-	print "objective=", value(prob.objective)  
+	#fig = plt.figure()
+	plt.show()
+	
+	"""
+	#problem = DTLZ2(3)
+	algorithms = [NSGAII]
+	# run the experiment using Python 3's concurrent futures for parallel evaluation
+	with ProcessPoolEvaluator() as evaluator:
+		results = experiment(algorithms, problem, seeds=1, nfe=10000, evaluator=evaluator)
+		# display the results
+	fig = plt.figure()
+	for i, algorithm in enumerate(six.iterkeys(results)):
+		result = results[algorithm][problem][0]
+		ax = fig.add_subplot(2, 5, i+1, projection='3d')
+		ax.scatter([s.objectives[0] for s in result],
+			[s.objectives[1] for s in result],
+			[s.objectives[2] for s in result])
+		ax.set_title(algorithm)
+		ax.set_xlim([0, 1.1])
+		ax.set_ylim([0, 1.1])
+		ax.set_zlim([0, 1.1])
+		ax.view_init(elev=30.0, azim=15.0)
+		ax.locator_params(nbins=4)
+
+	plt.show()
 	"""
 if __name__ == '__main__':
     main()

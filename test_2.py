@@ -29,6 +29,8 @@ subgetDefs = []
 #Coeficioentes de las funciones objetivos
 obgetsDefs = []
 
+pousDefs = []
+
 #Tipo de objetivo por cada funcion
 min_maxObject = []
 
@@ -48,18 +50,39 @@ MaxMinObj = []
 idsObjets = [] 
 
 def expreciones(exp):
+
 	print("EXPRECIONES")
-	
-	index = 0.0;
+	print(exp.getText())
+	index = 0.0
 	coefOper = 1.0
+	pouVal = 1
 	indexOper = 0
 	oper = [];
 	coefs = [0]*len(varIdsIndex)
+	pous = [1]*len(varIdsIndex)
 	#print(varIdsIdent)
 	"""
 	for operator in exp.operators():
 		print(operator.getText())
 	"""
+	idv=''
+	pouFlag=False
+	pouVal = 1
+	print("***childrens***")
+	for child in exp.getChildren():
+		if pouFlag:
+			index = varIdsIndex[idv]
+			pous[index]=int(child.getText())
+			pouFlag=False
+			idv=''
+
+		if child.getText() in varIdsIndex:
+			idv=child.getText()
+
+		if child.getText() == '**':
+			pouFlag = True
+	print(pous)
+	print("***************")
 	oper.append(1.0)
 	for oprExp in exp.operators():
 		if oprExp.getText() == '-':
@@ -69,7 +92,9 @@ def expreciones(exp):
 
 
 	for expCont in exp.expr_content():
-		
+		print("++++expr_content+++++++")
+		print(expCont.getText())
+		print("+++++++++++++++++++++++")
 		if expCont.getText() in varIdsIndex:
 			index = varIdsIndex[expCont.getText()]
 			coefs[index]=coefOper*oper[indexOper]
@@ -81,7 +106,75 @@ def expreciones(exp):
 	print(coefs)
 	print(oper)
 	print("=====================")
+	print("/////     /////////")
+	print(pous)
+	print("//////////////")
 	return coefs
+
+
+def expreciones_pous(exp):
+
+	print("EXPRECIONES")
+	print(exp.getText())
+	index = 0.0
+	coefOper = 1.0
+	pouVal = 1
+	indexOper = 0
+	oper = [];
+	coefs = [0]*len(varIdsIndex)
+	pous = [1]*len(varIdsIndex)
+	#print(varIdsIdent)
+	"""
+	for operator in exp.operators():
+		print(operator.getText())
+	"""
+	idv=''
+	pouFlag=False
+	pouVal = 1
+	print("***childrens***")
+	for child in exp.getChildren():
+		if pouFlag:
+			index = varIdsIndex[idv]
+			pous[index]=int(child.getText())
+			pouFlag=False
+			idv=''
+
+		if child.getText() in varIdsIndex:
+			idv=child.getText()
+
+		if child.getText() == '**':
+			pouFlag = True
+	print(pous)
+	print("***************")
+	oper.append(1.0)
+	for oprExp in exp.operators():
+		if oprExp.getText() == '-':
+			oper.append(-1.0)
+		elif oprExp.getText() == '+':
+			oper.append(1.0)
+
+
+	for expCont in exp.expr_content():
+		print("++++expr_content+++++++")
+		print(expCont.getText())
+		print("+++++++++++++++++++++++")
+		if expCont.getText() in varIdsIndex:
+			index = varIdsIndex[expCont.getText()]
+			coefs[index]=coefOper*oper[indexOper]
+			indexOper = indexOper+1
+			coefOper = 1.0
+		else:
+			coefOper = float(expCont.getText())
+		
+	print(coefs)
+	print(oper)
+	print("=====================")
+	print("/////     /////////")
+	print(pous)
+	print("//////////////")
+	return pous
+
+
 
 def fixedVal(frr):
 	arr = []
@@ -141,7 +234,10 @@ class StochmizePrintListener(StochmizeListener):
 			elif frr.rang():
 				varRanges[index]=rangVal(frr)
 				index=index+1
+
+		
 		print(varRanges)
+
 		"""
 		print("enterVars_def")
 		for child in ctx.getChildren():
@@ -192,6 +288,11 @@ class StochmizePrintListener(StochmizeListener):
 
 		for exprObj in ctx.expr():
 			obgetsDefs.append(expreciones(exprObj))
+			pousDefs.append(expreciones_pous(exprObj))
+		
+		print("$$$ obj $$$$$$")
+		print(obgetsDefs)
+		print("$$$$$$$$$$$$$$")
 	
 
 def main():
@@ -205,23 +306,25 @@ def main():
 	walker = ParseTreeWalker()
 	walker.walk(printer, tree)
 
-	model = {'objetives':{'type': min_maxObject, 'coefs':obgetsDefs},
+	model = {'objetives':{'type': min_maxObject, 'coefs':obgetsDefs, 'pous':pousDefs},
 			'restrictions':{'numCoefs': valNumRest, 'coefs':varCoefs}}
 
 	print(model)
 
-
+	
 	def fun(vars,model):
 		rest= []
 		objt = []
 		
+		idNumObg=0
 		for objcf in model['objetives']['coefs']:
 			index = 0
 			valob = 0
 			for coef in objcf:
-				valob = valob + coef*vars[index]
+				valob = valob + coef*pow(vars[index] , model['objetives']['pous'][idNumObg][index])
 				index=index+1
 			objt.append(valob)
+			idNumObg=idNumObg+1
 
 		idNumRest=0
 		for restcf in model['restrictions']['coefs']:
@@ -248,24 +351,24 @@ def main():
 			ranges.append(Real(ran[0],ran[0]))
 		index=index+1
 
-
 	problem.types[:] = ranges
 
-
+	print(ranges[0])
+	print(ranges[1])
 	problem.constraints[:] = "<=0"
 	problem.function = fun
 	problem.model = model
 
 	algorithm = NSGAII(problem)
-	algorithm.run(1)
-	"""
+	algorithm.run(10000)
+
 	for solution in algorithm.result:
-	    print(solution.objectives)
-	"""
+		print(solution.objectives)
+
 	
 	plt.scatter([s.objectives[0] for s in algorithm.result],
 	            [s.objectives[1] for s in algorithm.result])
-	#plt.xlim([-10.0, 20.0])
+	plt.xlim([-10.0, 20.0])
 	plt.ylim([-10.0, 20.0])
 	plt.xlabel("$f_1(x)$")
 	plt.ylabel("$f_2(x)$")

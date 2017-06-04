@@ -1,42 +1,31 @@
-from platypus import NSGAII, Problem, Real
+from platypus import *
+import matplotlib.pyplot as plt
 
-model = {'objetives':	 {'type':	  ['min'],'coefs':[[-1,4,9]]},
-		 'restrictions': {'numCoefs': [5,10,7],        'coefs':[[-1,-1],[1,1],[1,1]]}}
+m={}
+def belegundu(vars,m):
+	x = vars[0]
+	y = vars[1]
+	return [-2*pow(x,2) + y, 2*x + y], [-x + y - 1, x + y - 7]
 
-print(Real(0,1))
-def fun(vars,model):
-	rest= []
-	objt = []
-	
-	for objcf in model['objetives']['coefs']:
-		index = 0
-		valob = 0
-		for coef in objcf:
-			valob = valob + coef*vars[index]
-			index=index+1
-		objt.append(valob)
-
-	idNumRest=0
-	for restcf in model['restrictions']['coefs']:
-		index = 0
-		valrest = 0
-		for coef in restcf:
-			valrest = valrest + coef*vars[index]
-			index=index+1
-		rest.append(valrest-model['restrictions']['numCoefs'][idNumRest])
-		idNumRest=idNumRest+1
-
-	return objt,rest
-#Problem(num variables,num func objetivo, num restric)
-problem = Problem(3, 1, 3)
-problem.types[:] = [Real(0, 4), Real(-1, 1),Real(0, 0)]
+problem = Problem(2, 2, 2)
+problem.types[:] = [Real(0, 5), Real(0, 5)]
 problem.constraints[:] = "<=0"
-problem.function = fun
-
-problem.model = model
+problem.function = belegundu
+problem.model=m
 
 algorithm = NSGAII(problem)
-algorithm.run(100)
+algorithm.run(10000)
 
 for solution in algorithm.result:
-    print(solution.objectives)
+	print(solution.objectives)
+
+
+plt.scatter([s.objectives[0] for s in algorithm.result],
+	            [s.objectives[1] for s in algorithm.result])
+plt.xlim([-10.0, 20.0])
+plt.ylim([-10.0, 20.0])
+plt.xlabel("$f_1(x)$")
+plt.ylabel("$f_2(x)$")
+
+#fig = plt.figure()
+plt.show()

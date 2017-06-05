@@ -340,15 +340,16 @@ def main():
 	#Problem(num variables,num func objetivo, num restric)
 	problem = Problem(len(varIdsIndex), len(obgetsDefs), len(varCoefs))
 
-	ranges = []
+
+	ranges = [Real(0,0)]*len(varIdsIndex)
 
 	index=0
 	for var in varIdsIndex:
 		ran = varRanges[varIdsIndex[var]]
 		if len(ran) == 2:
-			ranges.append(Real(ran[0],ran[1]))
+			ranges[varIdsIndex[var]]=Real(ran[0],ran[1])
 		else:
-			ranges.append(Real(ran[0],ran[0]))
+			ranges[varIdsIndex[var]]=Real(ran[0],ran[0])
 		index=index+1
 
 	problem.types[:] = ranges

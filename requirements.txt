@@ -1,2 +1,12 @@
-PuLP==1.6.5
 antlr4-python2-runtime==4.7
+cycler==0.10.0
+functools32==3.2.3.post2
+matplotlib==2.0.2
+numpy==1.12.1
+-e git+https://github.com/aliendude/stochmize.git@facd5f8f07610cdf2a6bd02277833ecfd5bfcfa0#egg=Platypus&subdirectory=Platypus
+PuLP==1.6.5
+pyparsing==2.2.0
+python-dateutil==2.6.0
+pytz==2017.2
+six==1.10.0
+subprocess32==3.2.7

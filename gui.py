@@ -42,7 +42,8 @@ def new_file():
     print "Falta implementar"
 
 def compile():
-	p = subprocess.Popen([sys.executable, 'test_2.py', current_file.name, '--debug'], stdout=subprocess.PIPE)
+	save_command()
+	p = subprocess.Popen([sys.executable, 'compiler.py', current_file.name, '--debug'], stdout=subprocess.PIPE)
 	output = p.stdout.read()
 	#result = subprocess.run(['python', 'compiler.py', current_file.name, '--debug'], stdout=subprocess.PIPE)
 	#output = os.system('python compiler.py '+current_file.name+ " --debug")

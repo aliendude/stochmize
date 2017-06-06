@@ -328,9 +328,13 @@ def main():
 	algorithm = NSGAII(problem)
 	algorithm.run(10000)
 
+	if (debug): print('Valores de la funciones objetivo')
 	for solution in algorithm.result:
 		if (debug): print(solution.objectives)
 
+	if (debug): print('Valores de las variables')
+	for solution in algorithm.result:
+		if (debug): print(solution.variables)
 	
 	plt.scatter([s.objectives[0] for s in algorithm.result],
 	            [s.objectives[1] for s in algorithm.result])
